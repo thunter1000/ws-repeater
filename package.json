@@ -5,5 +5,17 @@
   "main": "index.js",
   "author": "Thomas Hunter",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "websocket": "^1.0.28"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1"
+  },
+  "scripts": {
+    "build": "babel --presets es2015 src/index.js -o dist/index.bundle.js",
+    "dev": "babel-node --presets es2015 src/index.js"
+  }
 }
