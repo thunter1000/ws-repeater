@@ -1,0 +1,9 @@
+{
+  "name": "ws-repeater",
+  "version": "1.0.0",
+  "description": "Used for repeating a websocket connection to a server while outputting information communicated. Used inplace of web browser websocket inspection tools.",
+  "main": "index.js",
+  "author": "Thomas Hunter",
+  "license": "MIT",
+  "private": false
+}
