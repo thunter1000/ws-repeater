@@ -21,17 +21,18 @@ class WsConneciton {
             this.wsClientConnection = connection;
             this.wsClientConnection.on('message', (message) => this._handleServerMessage(message));
             this.wsClientConnection.on('close', () => this._handleServerClose());
+
+            this.connection = request.accept(null, request.origin);
+            this.connection.on('message', message => this._handleClientMessage(message));
+            this.connection.on('close', () => this._handleClientClose());
         });
-        this.wsClient.on('connectFailed', () => {
+        this.wsClient.on('connectFailed', (e) => {
             this._log(`Failed to relay connection to ${process.env.CONNECT_ADDR}`);
+            console.error(e);
             this.connection.close();
         });
 
-        this.wsClient.connect(process.env.CONNECT_ADDR);
-
-        this.connection = request.accept(null, request.origin);
-        this.connection.on('message', message => this._handleClientMessage(message));
-        this.connection.on('close', () => this._handleClientClose());
+        this.wsClient.connect("wss://stock-test.retail.js-devops.co.uk/api/rss/789");
     }
 
     _handleClientMessage(message) {
